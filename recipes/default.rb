@@ -57,12 +57,6 @@ python_pip "http://cairographics.org/releases/py2cairo-1.8.10.tar.gz" do
   action :install
 end
 
-#execute "pip install py2cairo" do
-#  user "graphite"
-#  command "#{node[:graphite][:virtualenv]}/bin/pip install http://cairographics.org/releases/py2cairo-1.8.10.tar.gz"
-#end
-
-
 # TODO: The Pip provider always runs as root.  This should not be.
 execute "chown -R graphite:graphite /opt/graphite" do
   action :run
