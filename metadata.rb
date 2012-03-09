@@ -1,5 +1,5 @@
 maintainer       "Scott M. Likens"
-maintainer_email "scott@likens.us
+maintainer_email "scott@likens.us"
 license          "Free as in beer"
 description      "Installs/Configures graphite"
 
