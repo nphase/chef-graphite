@@ -2,9 +2,9 @@
 # Cookbook Name:: graphite
 # Recipe:: default
 #
-# Copyright 2012, Howaboutwe
+# Copyright 2012, Scott M. Likens
 #
-# All rights reserved - Do Not Redistribute
+# Free as in beer
 #
 
 group "graphite" do

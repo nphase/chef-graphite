@@ -1,7 +1,8 @@
-maintainer       "Howaboutwe"
-maintainer_email "dev@howaboutwe.com"
-license          "All rights reserved"
+maintainer       "Scott M. Likens"
+maintainer_email "scott@likens.us
+license          "Free as in beer"
 description      "Installs/Configures graphite"
 
 version          "0.0.1"
 depends "python"
+depends "runit"
