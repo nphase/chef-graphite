@@ -1,24 +1,14 @@
-directory "#{node[:graphite][:virtualenv]}/storage/log/webapp" do
-  action :create
-  recursive true
-  owner "graphite"
-  group "graphite"
-  mode 0755
-end
-
-template "/opt/graphite/webapp/graphite/local_settings.py" do
-  source "local_settings.py.erb"
-  owner "graphite"
-  group "graphite"
-  mode 0655
-end
-
-# TODO: Automate this.
-execute "syncdb" do
-  command "#{node[:graphite][:virtualenv]}/bin/django-admin.py syncdb --settings=graphite.settings --pythonpath=webapp"
-  user "graphite"
-  cwd "#{node[:graphite][:user_home]}"
-  action :nothing
-end
-
-runit_service "graphite" 
+include_recipe "graphite::_user"
+include_recipe "graphite::_group"
+include_recipe "graphite::_graphite_virtualenv"
+include_recipe "graphite::_graphite_support_packages"
+include_recipe "graphite::_graphite_install_from_pip"
+include_recipe "graphite::_cairo_install_from_package"
+include_recipe "graphite::_carbon_install_from_pip"
+include_recipe "graphite::_whisper_install_from_pip"
+include_recipe "graphite::_pip_cleanup"
+include_recipe "graphite::_carbon_config"
+include_recipe "graphite::_carbon_config_storage_schemas"
+include_recipe "graphite::_graphite_config_local_settings"
+include_recipe "graphite::_carbon_cache_runit"
+include_recipe "graphite::_graphite_runit"
