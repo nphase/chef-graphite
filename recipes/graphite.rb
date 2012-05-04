@@ -1,5 +1,5 @@
-include_recipe "graphite::_user"
 include_recipe "graphite::_group"
+include_recipe "graphite::_user"
 include_recipe "graphite::_graphite_virtualenv"
 include_recipe "graphite::_graphite_support_packages"
 include_recipe "graphite::_graphite_install_from_pip"
