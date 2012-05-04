@@ -5,9 +5,8 @@ description      "Installs/Configures Graphite"
 name             "graphite"
 version          "1.0.0"
 
-%w[ python runit ].each do |cookbook|
-  depends cookbook
-end
+depends "python", ">= 1.0.6"
+depends "runit", ">= 0.15.0"
 
 recipe "_cairo_install_from_package.rb", "Installs Cairo via package resource."
 recipe "_cairo_install_from_source.rb", "Installs Cairo via pip."
