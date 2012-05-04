@@ -17,10 +17,12 @@ default['graphite']['carbon']['line_rcvr_addr'] = node['cloud']['local_ipv4']
 default['graphite']['carbon']['pickle_rcvr_addr'] = node['cloud']['local_ipv4']
 default['graphite']['carbon']['cache_query_addr'] = node['cloud']['local_ipv4']
 default['graphite']['carbon']['version'] = '0.9.9'
+default['graphite']['db']['admin_email'] = 'graphite@example.com'
+default['graphite']['db']['admin_password'] = 'sha1$aaab5$56123f60bc5dcb3b60076928f868ab881245f1fc'
+default['graphite']['db']['admin_user'] = 'graphite'
 default['graphite']['whisper']['user'] = 'graphite'
 default['graphite']['whisper']['version'] = '0.9.9'
 default['graphite']['packages'] = { "gunicorn" => "0.14.1", "django" => "1.3", "django-tagging" => "0.3.1", "simplejson" => "2.1.6", "Twisted" => "11.0.0", "python-memcached" => "1.47", "txAMQP" => "0.4", "pytz" => "2012b" }
-default['graphite']['admin_password'] = "password"
 default['graphite']['schema'] = {
  :all => {
    :pattern => ".*",
