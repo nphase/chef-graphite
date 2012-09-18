@@ -17,9 +17,9 @@ directory "#{node['graphite']['virtualenv']}/storage/log/webapp" do
 end
 
 python_virtualenv node['graphite']['virtualenv'] do
-  interpreter "python2.7"
+  interpreter "python"
   owner node['graphite']['user']
   group node['graphite']['group']
   action :create
+  options "--system-site-packages"
 end
-
