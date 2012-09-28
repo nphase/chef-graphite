@@ -3,7 +3,7 @@ maintainer_email "miah@chia-pet.org"
 license          "Apache 2.0"
 description      "Installs/Configures Graphite"
 name             "graphite"
-version          "1.0.0"
+version          "1.0.1"
 
 depends "python", ">= 1.0.6"
 depends "runit", ">= 0.15.0"
