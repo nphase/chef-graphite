@@ -4,9 +4,9 @@ template "#{node['graphite']['app_dir']}/initial_data.json" do
   group node['graphite']['group']
   mode "0644"
   variables (
-    admin_user     => node['graphite']['db']['admin_user']
-    admin_password => node['graphite']['db']['admin_password']
-    admin_email    => node['graphite']['db']['admin_email']
+    {admin_user     => node['graphite']['db']['admin_user'],
+    admin_password => node['graphite']['db']['admin_password'],
+    admin_email    => node['graphite']['db']['admin_email']}
   )
 end
 
