@@ -1,5 +1,6 @@
+
 template "#{node['graphite']['conf_dir']}/carbon.conf" do
-  source "carbon.conf.erb"
+  source 'carbon.conf.erb'
   owner node['graphite']['user']
   group node['graphite']['group']
   mode 0655

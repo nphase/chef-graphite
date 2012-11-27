@@ -1,1 +1,1 @@
-runit_service "graphite" 
+runit_service "graphite"

@@ -9,7 +9,7 @@ directory node['graphite']['virtualenv'] do
 end
 
 directory "#{node['graphite']['virtualenv']}/storage/log/webapp" do
-  owner node['graphite']['user'] 
+  owner node['graphite']['user']
   group node['graphite']['group']
   mode 0755
   action :create
