@@ -5,6 +5,7 @@ default['graphite']['data_dir'] = '/opt/graphite/storage/'
 default['graphite']['home_dir'] = '/opt/graphite/share/graphite/'
 default['graphite']['log_dir'] = '/opt/graphite/log/'
 default['graphite']['pid_dir'] = '/var/run/graphite'
+default['graphite']['webapp_dir'] = '/opt/graphite/webapp/'
 default['graphite']['user'] = 'graphite'
 default['graphite']['group'] = 'graphite'
 default['graphite']['user_home'] = '/opt/graphite/'
@@ -22,10 +23,21 @@ default['graphite']['db']['admin_password'] = 'sha1$aaab5$56123f60bc5dcb3b600769
 default['graphite']['db']['admin_user'] = 'graphite'
 default['graphite']['whisper']['user'] = 'graphite'
 default['graphite']['whisper']['version'] = '0.9.10'
-default['graphite']['packages'] = { "gunicorn" => "0.14.1", "django" => "1.3", "django-tagging" => "0.3.1", "simplejson" => "2.1.6", "Twisted" => "11.0.0", "python-memcached" => "1.47", "txAMQP" => "0.4", "pytz" => "2012b" }
+
+default['graphite']['packages'] = {
+  'gunicorn' => '0.14.1',
+  'django' => '1.3',
+  'django-tagging' => '0.3.1',
+  'simplejson' => '2.1.6',
+  'Twisted' => '11.0.0',
+  'python-memcached' => '1.47',
+  'txAMQP' => '0.4',
+  'pytz' => '2012b'
+}
+
 default['graphite']['schema'] = {
  :all => {
-   :pattern => ".*",
-   :retentions => "60s:1d"
+   :pattern => '.*',
+   :retentions => '60s:1d'
  }
 }
