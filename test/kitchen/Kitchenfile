@@ -1,0 +1,20 @@
+# vim: set syntax=ruby
+
+test_platforms = { centos: %w(5.8 6.3), ubuntu: %w(10.04 12.04) }
+
+test_platforms.each do |key, value|
+  platform key do
+    value.each do |relver|
+      version relver do
+        box "opscode-#{ key.to_s }-#{ relver }"
+        box_url "https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-#{ key.to_s }-#{ relver }.box"
+      end
+    end
+  end
+end
+
+cookbook 'graphite' do
+  configuration 'graphite'
+  runtimes []
+  lint false
+end
