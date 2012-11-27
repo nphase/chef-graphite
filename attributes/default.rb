@@ -1,5 +1,6 @@
 default['graphite']['virtualenv'] = '/opt/graphite/.venv/'
 default['graphite']['app_dir'] = '/opt/graphite/webapp/graphite/'
+default['graphite']['bin_dir'] = '/opt/graphite/bin/'
 default['graphite']['conf_dir'] = '/opt/graphite/conf/'
 default['graphite']['data_dir'] = '/opt/graphite/storage/'
 default['graphite']['home_dir'] = '/opt/graphite/share/graphite/'
