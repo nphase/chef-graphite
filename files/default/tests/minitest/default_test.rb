@@ -7,10 +7,6 @@ describe 'graphite::graphite' do
     service('graphite').must_be_running
   end
 
-  it 'starts carbon_cache' do
-    service('carbon-cache').must_be_running
-  end
-
   describe 'graphite::_install_from_pip' do
     #it 'installs graphite' do
     #  package('graphite').must_be_installed
