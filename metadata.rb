@@ -1,28 +1,30 @@
-maintainer       "Miah Johnson"
-maintainer_email "miah@chia-pet.org"
-license          "Apache 2.0"
-description      "Installs/Configures Graphite"
-name             "graphite"
-version          "1.0.1"
+maintainer       'Miah Johnson'
+maintainer_email 'miah@chia-pet.org'
+license          'Apache 2.0'
+description      'Installs/Configures Graphite'
+name             'graphite'
+version          '1.0.1'
 
-depends "python", ">= 1.0.6"
-depends "runit", ">= 0.15.0"
+supports 'ubuntu'
 
-recipe "graphite::_cairo_install_from_package.rb", "Installs Cairo via package resource."
-recipe "graphite::_cairo_install_from_source.rb", "Installs Cairo via pip."
-recipe "graphite::_carbon_cache_runit.rb", "Starts Carbon via runit."
-recipe "graphite::_carbon_config.rb", "Installs configuration file for Carbon."
-recipe "graphite::_carbon_config_storage_schemas.rb", "Installs Carbon storage configuration template."
-recipe "graphite::_carbon_install_from_pip.rb", "Installs Carbon Web via pip."
-recipe "graphite::_graphite_config_local_settings.rb", "Installs database and cluster configuration."
-recipe "graphite::_graphite_install_from_pip.rb", "Installs Graphite Web via pip."
-recipe "graphite::_graphite_runit.rb", "Starts Graphite Web with runit."
-recipe "graphite::_graphite_support_packages.rb", "Installs pythong packages required by Graphite."
-recipe "graphite::_graphite_syncdb.rb", "Creates the initial data base tables required by Graphite Web."
-recipe "graphite::_graphite_virtualenv.rb", "Builds the Python virtual environment for Graphite."
-recipe "graphite::_group.rb", "Creates the Graphite group."
-recipe "graphite::_pip_cleanup.rb", "Changes owner/group on Graphite installation directory."
-recipe "graphite::_user.rb", "Creates the Graphite user."
-recipe "graphite::_whisper_install_from_pip.rb", "Installs Whisper via pip."
-recipe "graphite::default.rb", "Simply executes graphite::graphite."
-recipe "graphite::graphite.rb", "Executes several recipes to produce a working Graphite installation."
+depends 'python', '>= 1.0.6'
+depends 'runit', '>= 0.15.0'
+
+recipe 'graphite::_cairo_install_from_package.rb', 'Installs Cairo via package resource.'
+recipe 'graphite::_cairo_install_from_source.rb', 'Installs Cairo via pip.'
+recipe 'graphite::_carbon_cache_runit.rb', 'Starts Carbon via runit.'
+recipe 'graphite::_carbon_config.rb', 'Installs configuration file for Carbon.'
+recipe 'graphite::_carbon_config_storage_schemas.rb', 'Installs Carbon storage configuration template.'
+recipe 'graphite::_carbon_install_from_pip.rb', 'Installs Carbon Web via pip.'
+recipe 'graphite::_graphite_config_local_settings.rb', 'Installs database and cluster configuration.'
+recipe 'graphite::_graphite_install_from_pip.rb', 'Installs Graphite Web via pip.'
+recipe 'graphite::_graphite_runit.rb', 'Starts Graphite Web with runit.'
+recipe 'graphite::_graphite_support_packages.rb', 'Installs pythong packages required by Graphite.'
+recipe 'graphite::_graphite_syncdb.rb', 'Creates the initial data base tables required by Graphite Web.'
+recipe 'graphite::_graphite_virtualenv.rb', 'Builds the Python virtual environment for Graphite.'
+recipe 'graphite::_group.rb', 'Creates the Graphite group.'
+recipe 'graphite::_pip_cleanup.rb', 'Changes owner/group on Graphite installation directory.'
+recipe 'graphite::_user.rb', 'Creates the Graphite user.'
+recipe 'graphite::_whisper_install_from_pip.rb', 'Installs Whisper via pip.'
+recipe 'graphite::default.rb', 'Simply executes graphite::graphite.'
+recipe 'graphite::graphite.rb', 'Executes several recipes to produce a working Graphite installation.'
