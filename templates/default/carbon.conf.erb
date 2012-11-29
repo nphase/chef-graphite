@@ -7,7 +7,7 @@ USE_FLOW_CONTROL = True
 USER = <%= @user %>
 WHISPER_AUTOFLUSH = False
 
-<% default_cache = @caches.find { |i| i.name == 'default' } %>
+<%- default_cache = @caches.find { |i| i.name == 'None' } -%>
 LINE_RECEIVER_INTERFACE = <%= default_cache.listen_on %>
 LINE_RECEIVER_PORT = <%= default_cache.port %>
 PICKLE_RECEIVER_INTERFACE = <%= default_cache.listen_on %>
@@ -15,8 +15,8 @@ PICKLE_RECEIVER_PORT = <%= default_cache.pickle_port %>
 CACHE_QUERY_INTERFACE = <%= default_cache.listen_on %>
 CACHE_QUERY_PORT = <%= default_cache.query_port %>
 
-<% other_caches = @caches.reject { |i| i.name == 'default' } %>
-<% other_caches.each do |oc| %>
+<%- other_caches = @caches.reject { |i| i.name == 'None' } -%>
+<%- other_caches.each do |oc| -%>
 [cache:<%= oc.name %>]
 LINE_RECEIVER_INTERFACE = <%= oc.listen_on %>
 LINE_RECEIVER_PORT = <%= oc.port %>
@@ -24,7 +24,7 @@ PICKLE_RECEIVER_INTERFACE = <%= oc.listen_on %>
 PICKLE_RECEIVER_PORT = <%= oc.pickle_port %>
 CACHE_QUERY_INTERFACE = <%= oc.listen_on %>
 CACHE_QUERY_PORT = <%= oc.query_port %>
-<% end %>
+<%- end -%>
 
 [relay]
 MAX_DATAPOINTS_PER_MESSAGE = 500
@@ -33,9 +33,14 @@ RELAY_METHOD = rules
 REPLICATION_FACTOR = 1
 USE_FLOW_CONTROL = True
 
-LINE_RECEIVER_INTERFACE = <%= @line_rcvr_addr %>
-LINE_RECEIVER_PORT = 2013
-PICKLE_RECEIVER_INTERFACE = <%= @pickle_rcvr_addr %>
-PICKLE_RECEIVER_PORT = 2014
+<%- unless @relays.empty? -%>
+  <%- @relays.each do |relay| -%>
+[relay:<%= relay.name %>]
+LINE_RECEIVER_INTERFACE = <%= relay.listen_on %>
+LINE_RECEIVER_PORT = <%= relay.port %>
+PICKLE_RECEIVER_INTERFACE = <%= relay.listen_on %>
+PICKLE_RECEIVER_PORT = <%= relay.pickle_port %>
+  <%- end -%>
 
-DESTINATIONS = 127.0.0.1:2004
+DESTINATIONS = <%= caches.each { |c| "#{ c.listen_on }:#{ c.pickle_port }:#{ c.name }" }.join(', ') %>
+<%- end -%>
