@@ -1,6 +1,6 @@
 # vim: set syntax=ruby
 
-test_platforms = { centos: %w(5.8 6.3), ubuntu: %w(10.04 12.04) }
+test_platforms = { ubuntu: %w(10.04 12.04) }
 
 test_platforms.each do |key, value|
   platform key do
