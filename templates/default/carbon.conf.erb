@@ -7,23 +7,14 @@ USE_FLOW_CONTROL = True
 USER = <%= @user %>
 WHISPER_AUTOFLUSH = False
 
-<%- default_cache = @caches.find { |i| i.name == 'None' } -%>
-LINE_RECEIVER_INTERFACE = <%= default_cache.listen_on %>
-LINE_RECEIVER_PORT = <%= default_cache.port %>
-PICKLE_RECEIVER_INTERFACE = <%= default_cache.listen_on %>
-PICKLE_RECEIVER_PORT = <%= default_cache.pickle_port %>
-CACHE_QUERY_INTERFACE = <%= default_cache.listen_on %>
-CACHE_QUERY_PORT = <%= default_cache.query_port %>
-
-<%- other_caches = @caches.reject { |i| i.name == 'None' } -%>
-<%- other_caches.each do |oc| -%>
-[cache:<%= oc.name %>]
-LINE_RECEIVER_INTERFACE = <%= oc.listen_on %>
-LINE_RECEIVER_PORT = <%= oc.port %>
-PICKLE_RECEIVER_INTERFACE = <%= oc.listen_on %>
-PICKLE_RECEIVER_PORT = <%= oc.pickle_port %>
-CACHE_QUERY_INTERFACE = <%= oc.listen_on %>
-CACHE_QUERY_PORT = <%= oc.query_port %>
+<%- @caches.each do |c| -%>
+[cache:<%= c.name %>]
+LINE_RECEIVER_INTERFACE = <%= c.listen_on %>
+LINE_RECEIVER_PORT = <%= c.port %>
+PICKLE_RECEIVER_INTERFACE = <%= c.listen_on %>
+PICKLE_RECEIVER_PORT = <%= c.pickle_port %>
+CACHE_QUERY_INTERFACE = <%= c.listen_on %>
+CACHE_QUERY_PORT = <%= c.query_port %>
 <%- end -%>
 
 [relay]
@@ -32,15 +23,15 @@ MAX_QUEUE_SIZE = 10000
 RELAY_METHOD = rules
 REPLICATION_FACTOR = 1
 USE_FLOW_CONTROL = True
-
 <%- unless @relays.empty? -%>
-  <%- @relays.each do |relay| -%>
-[relay:<%= relay.name %>]
-LINE_RECEIVER_INTERFACE = <%= relay.listen_on %>
-LINE_RECEIVER_PORT = <%= relay.port %>
-PICKLE_RECEIVER_INTERFACE = <%= relay.listen_on %>
-PICKLE_RECEIVER_PORT = <%= relay.pickle_port %>
+
+  <%- @relays.each do |r| -%>
+[relay:<%= r.name %>]
+LINE_RECEIVER_INTERFACE = <%= r.listen_on %>
+LINE_RECEIVER_PORT = <%= r.port %>
+PICKLE_RECEIVER_INTERFACE = <%= r.listen_on %>
+PICKLE_RECEIVER_PORT = <%= r.pickle_port %>
   <%- end -%>
 
-DESTINATIONS = <%= caches.each { |c| "#{ c.listen_on }:#{ c.pickle_port }:#{ c.name }" }.join(', ') %>
+DESTINATIONS = <%= @caches.each { |c| "#{ c.listen_on }:#{ c.pickle_port }:#{ c.name }" }.join(', ') %>
 <%- end -%>
