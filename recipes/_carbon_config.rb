@@ -1,4 +1,8 @@
-caches = lookup_cache_resources
+caches = []
+relays = []
+
+caches = lookup_resources(:graphite_carbon_cache)
+relays = lookup_resources(:graphite_carbon_relay)
 
 template "#{ node['graphite']['conf_dir'] }/carbon.conf" do
   source 'carbon.conf.erb'
@@ -6,8 +10,6 @@ template "#{ node['graphite']['conf_dir'] }/carbon.conf" do
   group node['graphite']['group']
   mode 0644
   variables(:caches => caches,
-            :user => node['graphite']['user'],
-            :line_rcvr_addr => node['graphite']['carbon']['line_rcvr_addr'],
-            :pickle_rcvr_addr => node['graphite']['carbon']['pickle_rcvr_addr'],
-            :cache_query_addr => node['graphite']['carbon']['cache_query_addr'])
+    :relays => relays,
+    :user => node['graphite']['user'])
 end
